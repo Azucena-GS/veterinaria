@@ -15,15 +15,21 @@ class AuthController extends Controller
 
     public function logear(Request $request) {
         $creadenciales = [
-            'email' => $request->email,
-            'password' => $request->password
+            'email'    => $request->email,
+            'password' => $request->password,
         ];
 
         if (Auth::attempt($creadenciales)) {
+            $rol = Auth::user()->rol;
+
+            if ($rol === 'administrador') {
+                return to_route('admin.home');
+            }
+
             return to_route('home');
-        } else {
-            return to_route('login');
         }
+
+        return to_route('login');
     }
 
     public function logout() {
@@ -33,6 +39,9 @@ class AuthController extends Controller
     }
 
     public function home() {
+        if (Auth::user()->rol === 'administrador') {
+            return to_route('admin.home');
+        }
         return view('modules/dashboard/home');
     }
 }

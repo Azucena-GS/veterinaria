@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminUserSeeder extends Seeder
 {
     /**
-     * Crea el usuario administrador por defecto.
+     * Crea los usuarios de prueba por defecto (administrador y veterinario).
      */
     public function run(): void
     {
@@ -19,6 +19,18 @@ class AdminUserSeeder extends Seeder
                 'name'     => 'admin',
                 'email'    => 'admin@gmail.com',
                 'password' => Hash::make('admin'),
+                'rol'      => 'administrador',
+            ]
+        );
+
+        // Usuario veterinario de prueba
+        User::updateOrCreate(
+            ['email' => 'veterinario@gmail.com'],
+            [
+                'name'     => 'veterinario',
+                'email'    => 'veterinario@gmail.com',
+                'password' => Hash::make('veterinario'),
+                'rol'      => 'veterinario',
             ]
         );
     }

@@ -1,0 +1,80 @@
+/*
+ * admin.css — Tema del Panel de Administración
+ * Complementa SB Admin 2 con estilos propios para el rol administrador
+ */
+
+/* ============================================================
+   SIDEBAR – Fondo oscuro/navy con ajustes de contraste
+   ============================================================ */
+.bg-gradient-dark {
+    background: linear-gradient(180deg, #2c3e50 10%, #1a252f 100%) !important;
+}
+
+/* Íconos del sidebar en tono más claro */
+.sidebar-dark .nav-item .nav-link i {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-dark .nav-item.active .nav-link i,
+.sidebar-dark .nav-item .nav-link:hover i {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Brand del sidebar */
+.sidebar-brand {
+    padding: 1.5rem 1rem;
+}
+
+.sidebar-brand .sidebar-brand-icon i {
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+/* ============================================================
+   TOPBAR – Badge de rol
+   ============================================================ */
+.badge-dark {
+    background-color: #2c3e50;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   CARDS – Borde izquierdo oscuro para la variante admin
+   ============================================================ */
+.border-left-dark {
+    border-left: 0.25rem solid #2c3e50 !important;
+}
+
+/* ============================================================
+   TABLA DE USUARIOS
+   ============================================================ */
+#dataTableUsuarios thead.thead-dark th {
+    background-color: #2c3e50;
+    color: #fff;
+    border-color: #34495e;
+}
+
+#dataTableUsuarios tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ============================================================
+   BOTONES DARK en el panel
+   ============================================================ */
+.btn-dark {
+    background-color: #2c3e50;
+    border-color: #1a252f;
+}
+
+.btn-dark:hover {
+    background-color: #1a252f;
+    border-color: #0d1a24;
+}
+
+/* ============================================================
+   CARD HEADER del panel admin
+   ============================================================ */
+.card-header .text-dark {
+    color: #2c3e50 !important;
+}
