@@ -1,0 +1,99 @@
+/* =====================================================
+   VETERINARIA - Tema Rosa Claro
+   Override del tema SB Admin 2
+   ===================================================== */
+
+/* ── Variables de color ──────────────────────────────── */
+:root {
+    --pink-light:  #f8bbd0;
+    --pink-main:   #f48fb1;   /* PRIMARY - rosa claro */
+    --pink-mid:    #f06292;
+    --pink-dark:   #ec407a;   /* DARK */
+    --pink-darker: #d81b60;
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+.sidebar {
+    background: linear-gradient(180deg, #f48fb1 0%, #ec407a 100%) !important;
+}
+
+/* ── Fondo degradado principal (login body + sidebar) ── */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #f48fb1 0%, #ec407a 100%) !important;
+}
+
+/* ── Body del login ──────────────────────────────────── */
+body.bg-gradient-primary {
+    background: linear-gradient(135deg, #f48fb1 0%, #ec407a 100%) !important;
+}
+
+/* ── Botones primarios ───────────────────────────────── */
+.btn-primary {
+    background-color: #f06292 !important;
+    border-color:     #ec407a !important;
+    color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #e91e8c !important;
+    border-color:     #d81b60 !important;
+    box-shadow: 0 0 0 0.2rem rgba(244, 143, 177, 0.4) !important;
+}
+
+/* ── Textos primarios ────────────────────────────────── */
+.text-primary { color: #f06292 !important; }
+
+/* ── Bordes izquierdos de cards ──────────────────────── */
+.border-left-primary  { border-left: 0.25rem solid #f48fb1 !important; }
+.border-left-success  { border-left: 0.25rem solid #66bb6a !important; }
+.border-left-info     { border-left: 0.25rem solid #29b6f6 !important; }
+.border-left-warning  { border-left: 0.25rem solid #ffa726 !important; }
+
+/* ── Links del topbar ────────────────────────────────── */
+.topbar .nav-item .nav-link:focus,
+.topbar .nav-item .nav-link:hover {
+    color: #f06292 !important;
+}
+
+/* ── Scroll to top ───────────────────────────────────── */
+.scroll-to-top            { background-color: #f06292 !important; }
+.scroll-to-top:hover      { background-color: #ec407a !important; }
+
+/* ── Toggle sidebar ──────────────────────────────────── */
+#sidebarToggle            { background-color: rgba(255,255,255,0.25) !important; }
+#sidebarToggle:hover      { background-color: rgba(255,255,255,0.40) !important; }
+
+/* ── Sidebar brand ───────────────────────────────────── */
+.sidebar-brand            { background-color: rgba(0,0,0,0.10) !important; }
+
+/* ── Items activos del sidebar ───────────────────────── */
+.sidebar .nav-item.active .nav-link,
+.sidebar .nav-item .nav-link:hover {
+    background-color: rgba(255,255,255,0.18) !important;
+}
+
+/* ── Collapse links ──────────────────────────────────── */
+.collapse-item:hover  { color: #f06292 !important; }
+.collapse-item.active { color: #f06292 !important; font-weight: 700; }
+
+/* ── Panel izquierdo del login ───────────────────────── */
+.bg-login-image {
+    background: linear-gradient(135deg, #f48fb1 0%, #ec407a 100%) !important;
+}
+
+/* ── Input focus ─────────────────────────────────────── */
+.form-control:focus {
+    border-color: #f48fb1 !important;
+    box-shadow: 0 0 0 0.2rem rgba(244,143,177, 0.30) !important;
+}
+
+/* ── Badges ──────────────────────────────────────────── */
+.badge-primary   { background-color: #f06292 !important; }
+.badge-danger    { background-color: #f06292 !important; }
+
+/* ── Progress bars ───────────────────────────────────── */
+.progress-bar    { background-color: #f06292 !important; }
+
+/* ── Dropdown active ─────────────────────────────────── */
+.dropdown-item:active { background-color: #f06292 !important; }
