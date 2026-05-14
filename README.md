@@ -1,73 +1,75 @@
-# Sistema de Gestión Veterinaria
+# 🐾 Sistema de Gestión Veterinaria - SB Admin 2
 
-Este proyecto es un sistema de gestión para una veterinaria desarrollado con Laravel 11, utilizando el diseño de **SB Admin 2**.
+Este es un sistema integral de gestión para clínicas veterinarias desarrollado con **Laravel 11**. Utiliza una interfaz moderna basada en la plantilla **SB Admin 2**, con personalizaciones visuales únicas para cada rol de usuario.
 
-## 🚀 Últimas Actualizaciones
+## 🌟 Características Principales
 
-### Sistema de Autenticación y Roles
-Se ha implementado una lógica de redirección basada en roles para diferenciar la experiencia de usuario entre administradores y veterinarios.
+### 🔐 Autenticación Avanzada
+- **Sistema de Login Seguro**: Implementado con protección de rutas y manejo de sesiones.
+- **Redirección Basada en Roles**: El sistema detecta automáticamente si el usuario es un administrador o un veterinario.
+- **Seguridad**: Middleware de autenticación y validación de roles en controladores.
 
-- **Campo `rol`**: Se añadió a la migración de la tabla `users` como un `enum` con valores `administrador` y `veterinario`.
-- **Redirección Post-Login**:
-    - **Administrador**: Redirige a `/admin/home`.
-    - **Veterinario**: Redirige a `/home`.
+### 👥 Multi-Perfil (Dashboards Personalizados)
+El sistema ofrece dos experiencias visuales y funcionales distintas:
 
-### Panel de Administración (NUEVO)
-Se creó una sección exclusiva para el administrador con las siguientes características:
-- **Layout Personalizado**: `layouts/admin.blade.php` con paleta de colores azul marino (Navy).
-- **Sidebar Admin**: Menú diferenciado con acceso a gestión de usuarios, personal veterinario y estadísticas.
-- **Dashboard Admin**: Tarjetas de resumen (Usuarios, Ingresos, Reportes) y tabla de gestión de usuarios.
-- **Protección de Rutas**: Implementación de seguridad en controladores para evitar acceso cruzado entre roles.
+1.  **Panel de Administración (Tema Navy/Dark)**:
+    - Gestión global de usuarios.
+    - Control de personal veterinario.
+    - Estadísticas generales e informes.
+    - Layout exclusivo: `resources/views/layouts/admin.blade.php`.
+    - Sidebar con gradiente oscuro profesional.
 
-### Panel de Veterinario (Existente)
-- Se mantiene el dashboard enfocado en la gestión de pacientes y citas con el tema visual rosa original.
+2.  **Panel Veterinario (Tema Rosa/Pink)**:
+    - Gestión de pacientes (mascotas).
+    - Agenda de citas.
+    - Control de propietarios.
+    - Inventario de insumos.
+    - Layout exclusivo: `resources/views/layouts/app.blade.php`.
+    - Sidebar rosa personalizado para identidad de marca.
 
-## 🛠️ Instalación y Configuración
+## 🛠️ Stack Tecnológico
 
-1.  **Migrar y Sembrar**:
-    Ejecuta el siguiente comando para preparar la base de datos con los nuevos campos y usuarios de prueba:
+- **Backend**: Laravel 11.x (PHP 8.2+)
+- **Frontend**: Blade, Bootstrap 4 (SB Admin 2)
+- **Base de Datos**: MySQL / MariaDB
+- **Estilos**: CSS3 personalizado (Temas duales Navy y Pink)
+- **Iconografía**: FontAwesome 5
+
+## 📂 Estructura del Proyecto
+
+### Controladores Clave
+- `AuthController.php`: Gestiona el inicio de sesión, cierre de sesión y redirección inteligente.
+- `AdminController.php`: Gestiona las vistas y lógica exclusivas del administrador.
+
+### Rutas
+- `/`: Inicio de sesión.
+- `/home`: Dashboard del Veterinario (protegido por `auth`).
+- `/admin/home`: Dashboard del Administrador (protegido por `auth` + validación de rol).
+- `/logout`: Cierre de sesión seguro.
+
+## 🚀 Instalación y Uso
+
+1.  **Preparar la Base de Datos**:
     ```bash
     php artisan migrate:fresh --seed
     ```
 
-2.  **Usuarios de Prueba**:
-    | Rol | Correo | Contraseña |
-    | :--- | :--- | :--- |
-    | **Administrador** | `admin@gmail.com` | `admin` |
-    | **Veterinario** | `veterinario@gmail.com` | `veterinario` |
+2.  **Iniciar Servidor**:
+    ```bash
+    php artisan serve
+    ```
 
-## 🛠️ Tecnologías Utilizadas
+### 🔑 Credenciales de Prueba (Seeder)
 
-- **Framework**: Laravel 11.x
-- **Lenguaje**: PHP 8.2+
-- **Base de Datos**: MySQL / MariaDB
-- **Frontend**: Blade Templates, SB Admin 2 (Bootstrap 4)
-- **Estilos**: CSS3 personalizado (Temas Rosa y Navy)
+| Usuario | Correo | Contraseña | Dashboard |
+| :--- | :--- | :--- | :--- |
+| **Administrador** | `admin@gmail.com` | `admin` | `/admin/home` |
+| **Veterinario** | `veterinario@gmail.com` | `veterinario` | `/home` |
 
-## 📁 Estructura del Proyecto (Módulos Nuevos)
-
-El sistema ahora cuenta con una arquitectura modular para los roles:
-
-```text
-resources/views/
-├── layouts/
-│   ├── app.blade.php          # Layout Veterinario (Rosa)
-│   ├── admin.blade.php        # Layout Administrador (Navy)
-│   ├── partials/              # Componentes Veterinario
-│   └── admin-partials/        # Componentes Administrador
-├── modules/
-│   ├── auth/                  # Vistas de Inicio de Sesión
-│   ├── dashboard/             # Dashboard Veterinario
-│   └── admin/
-│       └── dashboard/         # Dashboard Administrador
-```
-
-## ⚙️ Requerimientos
-
-- PHP >= 8.2
-- Composer
-- Node.js & NPM (opcional para assets)
-- MySQL/SQLite
+## 🎨 Personalización Visual
+Se han implementado hojas de estilo separadas para mantener la coherencia visual:
+- `public/css/veterinaria.css`: Define el estilo rosa para el personal médico.
+- `public/css/admin.css`: Define el estilo azul marino para el área administrativa.
 
 ---
-*Desarrollado con ❤️ para la Gestión Veterinaria.*
+*Desarrollado con enfoque en la eficiencia y experiencia de usuario para clínicas veterinarias modernas.*
