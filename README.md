@@ -36,11 +36,38 @@ Se creó una sección exclusiva para el administrador con las siguientes caracte
     | **Administrador** | `admin@gmail.com` | `admin` |
     | **Veterinario** | `veterinario@gmail.com` | `veterinario` |
 
-## 📁 Estructura de Vistas
-- `resources/views/layouts/app.blade.php`: Layout para Veterinarios (Rosa).
-- `resources/views/layouts/admin.blade.php`: Layout para Administradores (Azul/Navy).
-- `resources/views/modules/dashboard/`: Vistas del panel veterinario.
-- `resources/views/modules/admin/`: Vistas del panel administrativo.
+## 🛠️ Tecnologías Utilizadas
+
+- **Framework**: Laravel 11.x
+- **Lenguaje**: PHP 8.2+
+- **Base de Datos**: MySQL / MariaDB
+- **Frontend**: Blade Templates, SB Admin 2 (Bootstrap 4)
+- **Estilos**: CSS3 personalizado (Temas Rosa y Navy)
+
+## 📁 Estructura del Proyecto (Módulos Nuevos)
+
+El sistema ahora cuenta con una arquitectura modular para los roles:
+
+```text
+resources/views/
+├── layouts/
+│   ├── app.blade.php          # Layout Veterinario (Rosa)
+│   ├── admin.blade.php        # Layout Administrador (Navy)
+│   ├── partials/              # Componentes Veterinario
+│   └── admin-partials/        # Componentes Administrador
+├── modules/
+│   ├── auth/                  # Vistas de Inicio de Sesión
+│   ├── dashboard/             # Dashboard Veterinario
+│   └── admin/
+│       └── dashboard/         # Dashboard Administrador
+```
+
+## ⚙️ Requerimientos
+
+- PHP >= 8.2
+- Composer
+- Node.js & NPM (opcional para assets)
+- MySQL/SQLite
 
 ---
-*Desarrollado como parte del sistema de gestión veterinaria.*
+*Desarrollado con ❤️ para la Gestión Veterinaria.*
