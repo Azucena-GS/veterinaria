@@ -16,6 +16,7 @@ Route::middleware("auth")->group(function () {
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
+        Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('usuarios.index');
     });
 });
 

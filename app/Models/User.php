@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the veterinario record associated with the user.
+     */
+    public function veterinario()
+    {
+        return $this->hasOne(Veterinario::class, 'usuario_id');
+    }
 }
