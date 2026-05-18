@@ -26,12 +26,4 @@ class AdminController extends Controller
         return view('modules.admin.dashboard.home');
     }
 
-    /**
-     * Muestra la lista de usuarios.
-     */
-    public function usuarios()
-    {
-        $this->soloAdmin();
-        return view('modules.admin.usuarios.index');
-    }
 }

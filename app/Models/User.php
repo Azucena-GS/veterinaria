@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rol',
     ];
 
     /**
@@ -53,5 +54,16 @@ class User extends Authenticatable
     public function veterinario()
     {
         return $this->hasOne(Veterinario::class, 'usuario_id');
+    }
+
+    /**
+     * Check if the user has any foreign key dependencies that prevent deletion.
+     * Currently only checks veterinario which IS allowed to be deleted.
+     * Add other relationships here as the system grows (e.g. citas, historiales).
+     */
+    public function hasDependencies(): bool
+    {
+        // Ejemplo futuro: return $this->citas()->exists();
+        return false;
     }
 }
