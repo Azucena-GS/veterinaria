@@ -2,9 +2,11 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     {{-- Sidebar Toggle (Mobile) --}}
+    @unless(View::hasSection('ocultar_sidebar'))
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
+    @endunless
 
     {{-- Topbar Brand Label --}}
     <span class="d-none d-sm-inline-block font-weight-bold text-dark ml-2">

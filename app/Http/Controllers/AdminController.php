@@ -25,5 +25,4 @@ class AdminController extends Controller
         $this->soloAdmin();
         return view('modules.admin.dashboard.home');
     }
-
 }

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('ocultar_sidebar', true)
+
 @section('titulo_pagina', 'Dashboard')
 @section('titulo_seccion', 'Dashboard')
 

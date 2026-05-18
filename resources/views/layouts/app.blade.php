@@ -33,7 +33,9 @@
     <div id="wrapper">
 
         {{-- SIDEBAR --}}
-        @include('layouts.partials.sidebar')
+        @unless(View::hasSection('ocultar_sidebar'))
+            @include('layouts.partials.sidebar')
+        @endunless
 
         {{-- CONTENT WRAPPER --}}
         <div id="content-wrapper" class="d-flex flex-column">

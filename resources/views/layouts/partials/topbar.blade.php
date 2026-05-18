@@ -2,9 +2,11 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     {{-- Sidebar Toggle (Mobile) --}}
+    @unless(View::hasSection('ocultar_sidebar'))
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
+    @endunless
 
     {{-- Topbar Search --}}
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -34,6 +36,20 @@
                 <h6 class="dropdown-header">Centro de Alertas</h6>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Sin alertas nuevas</a>
             </div>
+        </li>
+
+        {{-- Enlace a Dashboard --}}
+        <li class="nav-item d-flex align-items-center mr-1">
+            <a class="nav-link font-weight-bold {{ request()->routeIs('home') ? 'text-primary' : 'text-dark' }}" href="{{ route('home') }}">
+                <i class="fas fa-home mr-1"></i> Inicio
+            </a>
+        </li>
+
+        {{-- Enlace a Expedientes --}}
+        <li class="nav-item d-flex align-items-center mr-3">
+            <a class="nav-link font-weight-bold {{ request()->routeIs('expedientes') ? 'text-primary' : 'text-dark' }}" href="{{ route('expedientes') }}">
+                <i class="fas fa-folder-open mr-1"></i> Expedientes
+            </a>
         </li>
 
         <div class="topbar-divider d-none d-sm-block"></div>

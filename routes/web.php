@@ -13,6 +13,10 @@ Route::middleware("guest")->group(function () {
 Route::middleware("auth")->group(function () {
     Route::get('/home',[AuthController::class,'home'])->name('home');
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    
+    Route::get('/expedientes', function () {
+        return view('modules.expedientes.index');
+    })->name('expedientes');
 
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {
