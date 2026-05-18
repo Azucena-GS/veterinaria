@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExpedienteController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::middleware("guest")->group(function () {
     Route::get('/',[AuthController::class, 'index'])->name('login');
@@ -17,6 +19,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes', function () {
         return view('modules.expedientes.index');
     })->name('expedientes');
+    Route::get('/expedientes/buscar', [ExpedienteController::class, 'buscar'])->name('expedientes.buscar');
 
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {

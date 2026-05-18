@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class Mascota extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'dueno_id',
@@ -34,5 +34,14 @@ class Mascota extends Model
     public function consultas()
     {
         return $this->hasMany(Consulta::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'duenos.nombre_completo' => $this->dueno->nombre_completo ?? '',
+        ];
     }
 }
