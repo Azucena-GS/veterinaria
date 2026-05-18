@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Consulta extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'mascota_id',
+        'veterinario_id',
+        'fecha_consulta',
+        'peso',
+        'talla',
+        'diagnostico',
+        'tratamiento',
+    ];
+
+    protected $casts = [
+        'fecha_consulta' => 'datetime',
+        'peso' => 'decimal:2',
+        'talla' => 'decimal:2',
+    ];
+
+    public function mascota()
+    {
+        return $this->belongsTo(Mascota::class);
+    }
+
+    public function veterinario()
+    {
+        return $this->belongsTo(Veterinario::class);
+    }
+}

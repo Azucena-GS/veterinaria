@@ -24,9 +24,32 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <div class="text-center text-muted py-5">
-                        <i class="fas fa-folder-open fa-3x mb-3 text-gray-300"></i>
-                        <p class="mt-3">Módulo de expedientes en construcción.</p>
+                    <div class="row justify-content-center py-5">
+                        <div class="col-md-8 text-center">
+                            
+                            <h4 class="mb-4 text-gray-800">Buscar Expediente</h4>
+                            
+                            {{-- Buscador --}}
+                            <div class="input-group input-group-lg mb-4 shadow-sm">
+                                <input type="text" class="form-control" placeholder="Buscar por nombre del paciente, dueño, teléfono..." aria-label="Buscar" aria-describedby="btnBuscador">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary px-4" type="button" id="btnBuscador">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            {{-- Botones de acción --}}
+                            <div class="d-flex justify-content-center mt-4">
+                                <button type="button" class="btn btn-lg btn-outline-primary mx-2 shadow-sm">
+                                    <i class="fas fa-file-medical-alt mr-2"></i>Ver Consultas
+                                </button>
+                                <button type="button" class="btn btn-lg btn-success mx-2 shadow-sm">
+                                    <i class="fas fa-plus-circle mr-2"></i>Nuevo Paciente/Mascota
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
