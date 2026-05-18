@@ -33,10 +33,6 @@
 
                     @if($usuario->rol === 'veterinario' && $usuario->veterinario)
                         <h6 class="mt-4 font-weight-bold text-dark border-bottom pb-2">Datos de Veterinario</h6>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Especialidad:</strong> {{ $usuario->veterinario->especialidad }}</li>
-                            <li class="list-group-item"><strong>Cédula:</strong> {{ $usuario->veterinario->cedula_profesional }}</li>
-                        </ul>
                     @endif
                 </div>
             </div>

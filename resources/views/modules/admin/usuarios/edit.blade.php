@@ -64,16 +64,7 @@
                         <div id="veterinario_section" style="display: none;">
                             <h5 class="text-dark font-weight-bold mt-4 mb-3 border-bottom pb-2">Datos del Veterinario</h5>
                             
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="especialidad">Especialidad <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="especialidad" name="especialidad" value="{{ old('especialidad', $usuario->veterinario->especialidad ?? '') }}">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="cedula_profesional">Cédula Profesional <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="cedula_profesional" name="cedula_profesional" value="{{ old('cedula_profesional', $usuario->veterinario->cedula_profesional ?? '') }}">
-                                </div>
-                            </div>
+                            
 
                             <div class="form-group">
                                 <label for="foto_firma">Foto o Firma (Subir nueva reemplazará la actual)</label>

@@ -9,8 +9,6 @@ class Veterinario extends Model
     protected $fillable = [
         'usuario_id',
         'nombre_completo',
-        'especialidad',
-        'cedula_profesional',
         'foto_firma',
     ];
 

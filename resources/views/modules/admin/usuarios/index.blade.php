@@ -37,8 +37,7 @@
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Rol</th>
-                                    <th>Especialidad</th>
-                                    <th>Cédula</th>
+                                    <th>Estatus</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -56,17 +55,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($user->rol === 'veterinario' && $user->veterinario)
-                                                {{ $user->veterinario->especialidad }}
+                                            @if($user->estatus === 'activo')
+                                                <span class="badge badge-success">Activo</span>
                                             @else
-                                                <span class="text-muted">N/A</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($user->rol === 'veterinario' && $user->veterinario)
-                                                {{ $user->veterinario->cedula_profesional }}
-                                            @else
-                                                <span class="text-muted">N/A</span>
+                                                <span class="badge badge-danger">Inactivo</span>
                                             @endif
                                         </td>
                                         <td>
@@ -76,7 +68,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center text-muted">
+                                        <td colspan="6" class="text-center text-muted">
                                             <i class="fas fa-info-circle mr-1"></i> No hay usuarios registrados.
                                         </td>
                                     </tr>

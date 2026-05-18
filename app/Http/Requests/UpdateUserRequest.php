@@ -31,8 +31,6 @@ class UpdateUserRequest extends FormRequest
         ];
 
         if ($this->input('rol') === 'veterinario') {
-            $rules['especialidad'] = 'required|string|max:255';
-            $rules['cedula_profesional'] = 'required|string|max:255';
             $rules['foto_firma'] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
         }
 
@@ -61,8 +59,6 @@ class UpdateUserRequest extends FormRequest
             'email' => 'correo electrónico',
             'password' => 'contraseña',
             'rol' => 'rol de usuario',
-            'especialidad' => 'especialidad',
-            'cedula_profesional' => 'cédula profesional',
             'foto_firma' => 'foto o firma',
         ];
     }

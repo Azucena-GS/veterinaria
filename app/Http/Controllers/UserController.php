@@ -56,8 +56,6 @@ class UserController extends Controller
             Veterinario::create([
                 'usuario_id' => $user->id,
                 'nombre_completo' => $request->name,
-                'especialidad' => $request->especialidad,
-                'cedula_profesional' => $request->cedula_profesional,
                 'foto_firma' => $fotoPath,
             ]);
         }
@@ -91,8 +89,6 @@ class UserController extends Controller
         if ($request->rol === 'veterinario') {
             $veterinarioData = [
                 'nombre_completo' => $request->name,
-                'especialidad' => $request->especialidad,
-                'cedula_profesional' => $request->cedula_profesional,
             ];
 
             if ($request->hasFile('foto_firma')) {
