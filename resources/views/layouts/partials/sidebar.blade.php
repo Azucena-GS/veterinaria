@@ -12,73 +12,132 @@
     {{-- Divider --}}
     <hr class="sidebar-divider my-0">
 
-    {{-- Dashboard --}}
-    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
+    @if(request()->routeIs('expedientes.consultas.show'))
+        {{-- ================= MENU DE DETALLE DE CONSULTA ================= --}}
+        
+        <div class="sidebar-heading mt-3 text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">CONSULTA</div>
 
-    {{-- Divider --}}
-    <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#diagnostico">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>Diagnóstico</span>
+            </a>
+        </li>
 
-    {{-- Heading --}}
-    <div class="sidebar-heading">Gestión</div>
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#tratamiento">
+                <i class="fas fa-fw fa-stethoscope"></i>
+                <span>Tratamiento</span>
+            </a>
+        </li>
 
-    {{-- Nav Item - Pacientes --}}
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePacientes"
-            aria-expanded="true" aria-controls="collapsePacientes">
-            <i class="fas fa-fw fa-dog"></i>
-            <span>Pacientes</span>
-        </a>
-        <div id="collapsePacientes" class="collapse" aria-labelledby="headingPacientes" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Mascotas:</h6>
-                <a class="collapse-item" href="#">Ver todos</a>
-                <a class="collapse-item" href="#">Nuevo paciente</a>
+        <hr class="sidebar-divider mt-2 mb-2 border-light" style="opacity: 0.2;">
+
+        <div class="sidebar-heading text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">ANTECEDENTES</div>
+
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#alergias">
+                <i class="fas fa-fw fa-hand-paper"></i>
+                <span>Alergias</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#lesiones">
+                <i class="fas fa-fw fa-bone"></i>
+                <span>Lesiones</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#patologicos">
+                <i class="fas fa-fw fa-heartbeat"></i>
+                <span>Patológicos</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider mt-2 mb-2 border-light" style="opacity: 0.2;">
+
+        <div class="sidebar-heading text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">HISTORIAL</div>
+
+        <li class="nav-item">
+            <a class="nav-link py-2" href="#alimentacion">
+                <i class="fas fa-fw fa-utensils"></i>
+                <span>Alimentación</span>
+            </a>
+        </li>
+
+    @else
+        {{-- ================= MENU PRINCIPAL POR DEFECTO ================= --}}
+
+        {{-- Dashboard --}}
+        <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        {{-- Divider --}}
+        <hr class="sidebar-divider">
+
+        {{-- Heading --}}
+        <div class="sidebar-heading">Gestión</div>
+
+        {{-- Nav Item - Pacientes --}}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePacientes"
+                aria-expanded="true" aria-controls="collapsePacientes">
+                <i class="fas fa-fw fa-dog"></i>
+                <span>Pacientes</span>
+            </a>
+            <div id="collapsePacientes" class="collapse" aria-labelledby="headingPacientes" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Mascotas:</h6>
+                    <a class="collapse-item" href="#">Ver todos</a>
+                    <a class="collapse-item" href="#">Nuevo paciente</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
-    {{-- Nav Item - Citas --}}
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCitas"
-            aria-expanded="true" aria-controls="collapseCitas">
-            <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Citas</span>
-        </a>
-        <div id="collapseCitas" class="collapse" aria-labelledby="headingCitas" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Agenda:</h6>
-                <a class="collapse-item" href="#">Ver citas</a>
-                <a class="collapse-item" href="#">Nueva cita</a>
+        {{-- Nav Item - Citas --}}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCitas"
+                aria-expanded="true" aria-controls="collapseCitas">
+                <i class="fas fa-fw fa-calendar-alt"></i>
+                <span>Citas</span>
+            </a>
+            <div id="collapseCitas" class="collapse" aria-labelledby="headingCitas" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Agenda:</h6>
+                    <a class="collapse-item" href="#">Ver citas</a>
+                    <a class="collapse-item" href="#">Nueva cita</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
-    {{-- Divider --}}
-    <hr class="sidebar-divider">
+        {{-- Divider --}}
+        <hr class="sidebar-divider">
 
-    {{-- Heading --}}
-    <div class="sidebar-heading">Administración</div>
+        {{-- Heading --}}
+        <div class="sidebar-heading">Administración</div>
 
-    {{-- Nav Item - Propietarios --}}
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Propietarios</span>
-        </a>
-    </li>
+        {{-- Nav Item - Propietarios --}}
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Propietarios</span>
+            </a>
+        </li>
 
-    {{-- Nav Item - Inventario --}}
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-boxes"></i>
-            <span>Inventario</span>
-        </a>
-    </li>
+        {{-- Nav Item - Inventario --}}
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-boxes"></i>
+                <span>Inventario</span>
+            </a>
+        </li>
+    @endif
 
     {{-- Divider --}}
     <hr class="sidebar-divider d-none d-md-block">

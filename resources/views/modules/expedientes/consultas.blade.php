@@ -72,7 +72,7 @@
                                             <td>{{ $consulta->veterinario->user->name ?? 'N/A' }}</td>
                                             <td>{{ Str::limit($consulta->diagnostico, 50) }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm" title="Ver Detalles">
+                                                <a href="{{ route('expedientes.consultas.show', ['mascota' => $mascota->id, 'consulta' => $consulta->id]) }}" class="btn btn-info btn-sm" title="Ver Detalles">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             </td>

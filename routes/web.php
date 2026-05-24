@@ -21,6 +21,8 @@ Route::middleware("auth")->group(function () {
     })->name('expedientes');
     Route::get('/expedientes/buscar', [ExpedienteController::class, 'buscar'])->name('expedientes.buscar');
     Route::get('/expedientes/{mascota}/consultas', [ExpedienteController::class, 'consultas'])->name('expedientes.consultas');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}', [ExpedienteController::class, 'showConsulta'])->name('expedientes.consultas.show');
+
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
