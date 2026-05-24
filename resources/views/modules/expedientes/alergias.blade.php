@@ -23,14 +23,12 @@
 
     <!-- Formulario para agregar alergia (Ancho Completo) -->
     <div class="card shadow mb-4">
-        
-        <div class="card-body">
-            
-            <form action="{{ route('expedientes.consultas.alergias.store', [$mascota->id, $consulta->id]) }}" method="POST">
-                @csrf
-                <div class="card-header py-3 bg-white">
+        <div class="card-header py-3 bg-white">
             <h6 class="m-0 font-weight-bold text-primary">Registrar Nueva Alergia</h6>
         </div>
+        <div class="card-body">
+            <form action="{{ route('expedientes.consultas.alergias.store', [$mascota->id, $consulta->id]) }}" method="POST">
+                @csrf
                 <div class="form-group">
                     <label class="small font-weight-bold">Sustancia Alérgena</label>
                     <input type="text" name="sustancia_alergena" class="form-control" placeholder="Ej. Penicilina, Pollo, etc." required>
