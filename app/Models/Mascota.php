@@ -44,4 +44,19 @@ class Mascota extends Model
             'duenos.nombre_completo' => $this->dueno->nombre_completo ?? '',
         ];
     }
+
+    public function alergias()
+    {
+        return $this->hasMany(AntecedenteAlergia::class);
+    }
+
+    public function lesiones()
+    {
+        return $this->hasMany(AntecedenteLesion::class);
+    }
+
+    public function patologicos()
+    {
+        return $this->hasMany(AntecedentePatologico::class);
+    }
 }

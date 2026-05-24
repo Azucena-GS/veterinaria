@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\AntecedenteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +29,27 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [ExpedienteController::class, 'tratamiento'])->name('expedientes.consultas.tratamiento');
     Route::put('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [ExpedienteController::class, 'updateTratamiento'])->name('expedientes.consultas.tratamiento.update');
     Route::get('/expedientes/{mascota}/consultas/{consulta}/receta', [ExpedienteController::class, 'imprimirReceta'])->name('expedientes.consultas.receta');
+
+    // Rutas de Antecedentes (Alergias)
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alergias', [AntecedenteController::class, 'historialAlergias'])->name('expedientes.consultas.alergias');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alergias/crear', [AntecedenteController::class, 'crearAlergia'])->name('expedientes.consultas.alergias.crear');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alergias/{alergia}/eliminar', [AntecedenteController::class, 'deleteAlergia'])->name('expedientes.consultas.alergias.delete');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/alergias', [AntecedenteController::class, 'storeAlergia'])->name('expedientes.consultas.alergias.store');
+    Route::delete('/expedientes/{mascota}/consultas/{consulta}/alergias/{alergia}', [AntecedenteController::class, 'destroyAlergia'])->name('expedientes.consultas.alergias.destroy');
+
+    // Rutas de Antecedentes (Lesiones)
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/lesiones', [AntecedenteController::class, 'historialLesiones'])->name('expedientes.consultas.lesiones');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/lesiones/crear', [AntecedenteController::class, 'crearLesion'])->name('expedientes.consultas.lesiones.crear');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/lesiones/{lesion}/eliminar', [AntecedenteController::class, 'deleteLesion'])->name('expedientes.consultas.lesiones.delete');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/lesiones', [AntecedenteController::class, 'storeLesion'])->name('expedientes.consultas.lesiones.store');
+    Route::delete('/expedientes/{mascota}/consultas/{consulta}/lesiones/{lesion}', [AntecedenteController::class, 'destroyLesion'])->name('expedientes.consultas.lesiones.destroy');
+
+    // Rutas de Antecedentes (Patológicos)
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/patologicos', [AntecedenteController::class, 'historialPatologicos'])->name('expedientes.consultas.patologicos');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/patologicos/crear', [AntecedenteController::class, 'crearPatologico'])->name('expedientes.consultas.patologicos.crear');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/patologicos/{patologico}/eliminar', [AntecedenteController::class, 'deletePatologico'])->name('expedientes.consultas.patologicos.delete');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/patologicos', [AntecedenteController::class, 'storePatologico'])->name('expedientes.consultas.patologicos.store');
+    Route::delete('/expedientes/{mascota}/consultas/{consulta}/patologicos/{patologico}', [AntecedenteController::class, 'destroyPatologico'])->name('expedientes.consultas.patologicos.destroy');
 
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {

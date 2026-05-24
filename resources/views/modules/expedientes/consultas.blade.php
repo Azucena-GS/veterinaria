@@ -7,7 +7,7 @@
 
 @section('acciones_cabecera')
     <a href="{{ route('expedientes') }}" class="btn btn-sm btn-secondary shadow-sm mr-2">
-        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Volver a Buscar
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Volver
     </a>
     <a href="#" class="btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-plus fa-sm text-white-50"></i> Nueva Consulta

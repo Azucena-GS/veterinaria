@@ -35,23 +35,23 @@
 
         <div class="sidebar-heading text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">ANTECEDENTES</div>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#alergias">
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.alergias') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.alergias', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
                 <i class="fas fa-fw fa-hand-paper"></i>
                 <span>Alergias</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#lesiones">
-                <i class="fas fa-fw fa-bone"></i>
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.lesiones') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.lesiones', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
+                <i class="fas fa-fw fa-band-aid"></i>
                 <span>Lesiones</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#patologicos">
-                <i class="fas fa-fw fa-heartbeat"></i>
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.patologicos') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.patologicos', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
+                <i class="fas fa-fw fa-viruses"></i>
                 <span>Patológicos</span>
             </a>
         </li>

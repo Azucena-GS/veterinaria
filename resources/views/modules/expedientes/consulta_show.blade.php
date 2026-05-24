@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('titulo_pagina', '')
+@section('titulo_pagina', 'Detalle de Consulta')
 @section('titulo_seccion', 'Detalle de Consulta')
 
 @section('acciones_cabecera')
     <a href="{{ route('expedientes.consultas', $mascota->id) }}" class="btn btn-sm btn-secondary shadow-sm">
-        <i class="fas fa-arrow-left fa-sm text-white-50 mr-1"></i> Volver al Historial
+        <i class="fas fa-arrow-left fa-sm text-white-50 mr-1"></i> Volver
     </a>
 @endsection
 
