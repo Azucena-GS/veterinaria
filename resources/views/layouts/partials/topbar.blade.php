@@ -8,18 +8,22 @@
     </button>
     @endunless
 
-    {{-- Topbar Search --}}
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form>
+    {{-- Main Navigation (Left) --}}
+    <ul class="navbar-nav mr-auto ml-md-3">
+        {{-- Enlace a Dashboard --}}
+        <li class="nav-item d-flex align-items-center mr-1">
+            <a class="nav-link font-weight-bold {{ request()->routeIs('home') ? 'text-primary' : 'text-dark' }}" href="{{ route('home') }}">
+                <i class="fas fa-home mr-1"></i> Inicio
+            </a>
+        </li>
+
+        {{-- Enlace a Expedientes --}}
+        <li class="nav-item d-flex align-items-center mr-3">
+            <a class="nav-link font-weight-bold {{ request()->routeIs('expedientes') ? 'text-primary' : 'text-dark' }}" href="{{ route('expedientes') }}">
+                <i class="fas fa-folder-open mr-1"></i> Expedientes
+            </a>
+        </li>
+    </ul>
 
     {{-- Topbar Navbar --}}
     <ul class="navbar-nav ml-auto">
@@ -38,19 +42,7 @@
             </div>
         </li>
 
-        {{-- Enlace a Dashboard --}}
-        <li class="nav-item d-flex align-items-center mr-1">
-            <a class="nav-link font-weight-bold {{ request()->routeIs('home') ? 'text-primary' : 'text-dark' }}" href="{{ route('home') }}">
-                <i class="fas fa-home mr-1"></i> Inicio
-            </a>
-        </li>
 
-        {{-- Enlace a Expedientes --}}
-        <li class="nav-item d-flex align-items-center mr-3">
-            <a class="nav-link font-weight-bold {{ request()->routeIs('expedientes') ? 'text-primary' : 'text-dark' }}" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder-open mr-1"></i> Expedientes
-            </a>
-        </li>
 
         <div class="topbar-divider d-none d-sm-block"></div>
 

@@ -33,12 +33,7 @@
                             <div class="position-relative text-left">
                                 <div class="input-group input-group-lg mb-4 shadow-sm">
                                     <input type="text" id="inputBuscador" class="form-control" placeholder="Buscar por nombre de mascota, dueño o folio..." autocomplete="off">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary px-4" type="button">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                    <input type="hidden" id="mascotaSeleccionadaId" value="">                                </div>
                                 
                                 {{-- Contenedor de Resultados Flotante --}}
                                 <div id="resultadosBusqueda" class="dropdown-menu w-100 shadow position-absolute" style="top: 100%; left: 0; display: none; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: -1.5rem;">
@@ -48,7 +43,7 @@
                             
                             {{-- Botones de acción --}}
                             <div class="d-flex justify-content-center mt-4">
-                                <button type="button" class="btn btn-lg btn-outline-primary mx-2 shadow-sm">
+                                <button type="button" id="btnVerConsultas" class="btn btn-lg btn-outline-primary mx-2 shadow-sm">
                                     <i class="fas fa-file-medical-alt mr-2"></i>Ver Consultas
                                 </button>
                                 <button type="button" class="btn btn-lg btn-success mx-2 shadow-sm">
@@ -68,6 +63,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('inputBuscador');
+    const inputHiddenId = document.getElementById('mascotaSeleccionadaId');
+    const btnVerConsultas = document.getElementById('btnVerConsultas');
     const resultadosContainer = document.getElementById('resultadosBusqueda');
     let timeoutId;
 
@@ -114,10 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <small class="text-gray-800"><i class="fas fa-user mr-1 text-muted"></i> Dueño: ${duenoNombre}</small>
                         `;
                         
-                        // Si hace clic, que ponga el nombre en el input (comportamiento sugerido)
+                        // Si hace clic, que ponga el nombre en el input y guarde el ID
                         item.addEventListener('click', function(e) {
                             e.preventDefault();
                             input.value = mascota.nombre;
+                            inputHiddenId.value = mascota.id;
                             resultadosContainer.style.display = 'none';
                         });
 
@@ -128,6 +126,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => console.error('Error al buscar:', error));
         }, 300);
+    });
+
+    // Redirigir a consultas al hacer clic en el botón
+    btnVerConsultas.addEventListener('click', function() {
+        const mascotaId = inputHiddenId.value;
+        if (mascotaId) {
+            window.location.href = `/expedientes/${mascotaId}/consultas`;
+        } else {
+            alert('Por favor, busca y selecciona un expediente primero.');
+        }
     });
 
     // Cerrar resultados si se hace clic fuera
