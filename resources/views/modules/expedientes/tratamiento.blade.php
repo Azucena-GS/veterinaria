@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo_pagina', '')
-@section('titulo_seccion', 'Diagnóstico de la Consulta')
+@section('titulo_seccion', 'Tratamiento de la Consulta')
 
 @section('acciones_cabecera')
     <a href="{{ route('expedientes.consultas.show', [$mascota->id, $consulta->id]) }}" class="btn btn-sm btn-secondary shadow-sm">
@@ -20,7 +20,7 @@
             <span class="text-muted mx-2">/</span> 
             <a href="{{ route('expedientes.consultas.show', [$mascota->id, $consulta->id]) }}" class="text-primary text-decoration-none">Consulta #{{ $consulta->id }}</a>
             <span class="text-muted mx-2">/</span> 
-            <span class="text-gray-600">Diagnóstico</span>
+            <span class="text-gray-600">Tratamiento</span>
         </div>
     </div>
 
@@ -41,27 +41,32 @@
         </div>
     </div>
 
-    <!-- Sección de Diagnóstico -->
+    <!-- Sección de Tratamiento -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white border-bottom-0">
-            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-clipboard-list mr-2"></i>Redactar Diagnóstico</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-pills mr-2"></i>Redactar Tratamiento o Receta Médica</h6>
         </div>
         <div class="card-body pt-0">
-            @if(empty($consulta->diagnostico))
+            @if(empty($consulta->tratamiento))
                 <div class="alert alert-warning mb-4 py-2">
-                    <i class="fas fa-exclamation-triangle mr-2"></i> Aún sin diagnóstico.
+                    <i class="fas fa-exclamation-triangle mr-2"></i> Aún no se ha indicado un tratamiento.
                 </div>
             @endif
 
-            <form action="{{ route('expedientes.consultas.diagnostico.update', [$mascota->id, $consulta->id]) }}" method="POST">
+            <form action="{{ route('expedientes.consultas.tratamiento.update', [$mascota->id, $consulta->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <textarea id="diagnostico" name="diagnostico">{{ old('diagnostico', $consulta->diagnostico) }}</textarea>
+                    <textarea id="tratamiento" name="tratamiento">{{ old('tratamiento', $consulta->tratamiento) }}</textarea>
                 </div>
                 <div class="text-right mt-4">
+                    @if(!empty($consulta->tratamiento))
+                        <a href="{{ route('expedientes.consultas.receta', [$mascota->id, $consulta->id]) }}" target="_blank" class="btn btn-secondary px-4 shadow-sm mr-2">
+                            <i class="fas fa-print mr-2"></i> Imprimir Receta
+                        </a>
+                    @endif
                     <button type="submit" class="btn btn-primary px-4 shadow-sm">
-                        <i class="fas fa-save mr-2"></i> Guardar Diagnóstico
+                        <i class="fas fa-save mr-2"></i> Guardar Tratamiento
                     </button>
                 </div>
             </form>
@@ -84,7 +89,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         ClassicEditor
-            .create( document.querySelector( '#diagnostico' ), {
+            .create( document.querySelector( '#tratamiento' ), {
                 toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo' ]
             } )
             .catch( error => {

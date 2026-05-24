@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('ocultar_sidebar', true)
+
 @section('titulo_pagina', 'Historial de Consultas')
 @section('titulo_seccion', 'Consultas de ' . $mascota->nombre)
 
@@ -61,7 +63,8 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Veterinario</th>
-                                        <th>Diagnóstico</th>
+                                        <th>Peso</th>
+                                        <th>Talla</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -70,7 +73,8 @@
                                         <tr>
                                             <td>{{ $consulta->fecha_consulta->format('d/m/Y h:i A') }}</td>
                                             <td>{{ $consulta->veterinario->user->name ?? 'N/A' }}</td>
-                                            <td>{{ Str::limit($consulta->diagnostico, 50) }}</td>
+                                            <td>{{ $consulta->peso }} kg</td>
+                                            <td>{{ $consulta->talla }} cm</td>
                                             <td>
                                                 <a href="{{ route('expedientes.consultas.show', ['mascota' => $mascota->id, 'consulta' => $consulta->id]) }}" class="btn btn-info btn-sm" title="Ver Detalles">
                                                     <i class="fas fa-eye"></i>

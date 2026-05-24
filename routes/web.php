@@ -24,6 +24,10 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes/{mascota}/consultas/{consulta}', [ExpedienteController::class, 'showConsulta'])->name('expedientes.consultas.show');
     Route::get('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [ExpedienteController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
     Route::put('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [ExpedienteController::class, 'updateDiagnostico'])->name('expedientes.consultas.diagnostico.update');
+    
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [ExpedienteController::class, 'tratamiento'])->name('expedientes.consultas.tratamiento');
+    Route::put('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [ExpedienteController::class, 'updateTratamiento'])->name('expedientes.consultas.tratamiento.update');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/receta', [ExpedienteController::class, 'imprimirReceta'])->name('expedientes.consultas.receta');
 
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {

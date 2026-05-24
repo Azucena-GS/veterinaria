@@ -24,8 +24,8 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#tratamiento">
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.tratamiento') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.tratamiento', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
                 <i class="fas fa-fw fa-stethoscope"></i>
                 <span>Tratamiento</span>
             </a>

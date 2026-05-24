@@ -81,4 +81,49 @@ class ExpedienteController extends Controller
         return redirect()->route('expedientes.consultas.diagnostico', [$mascota->id, $consulta->id])
                          ->with('success', $mensaje);
     }
+
+    public function tratamiento(Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+        
+        $consulta->load(['veterinario.user']);
+        $mascota->load(['dueno']);
+
+        return view('modules.expedientes.tratamiento', compact('mascota', 'consulta'));
+    }
+
+    public function updateTratamiento(Request $request, Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+
+        $request->validate([
+            'tratamiento' => 'required|string',
+        ]);
+
+        $esNuevo = empty($consulta->tratamiento);
+
+        $consulta->tratamiento = $request->input('tratamiento');
+        $consulta->save();
+
+        $mensaje = $esNuevo ? 'Se guardó el tratamiento exitosamente.' : 'Se actualizó con éxito el tratamiento.';
+
+        return redirect()->route('expedientes.consultas.tratamiento', [$mascota->id, $consulta->id])
+                         ->with('success', $mensaje);
+    }
+
+    public function imprimirReceta(Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+        
+        $consulta->load(['veterinario.user']);
+        $mascota->load(['dueno']);
+
+        return view('modules.expedientes.receta_print', compact('mascota', 'consulta'));
+    }
 }
