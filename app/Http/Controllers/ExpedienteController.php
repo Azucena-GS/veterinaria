@@ -47,4 +47,38 @@ class ExpedienteController extends Controller
 
         return view('modules.expedientes.consulta_show', compact('mascota', 'consulta'));
     }
+
+    public function diagnostico(Mascota $mascota, Consulta $consulta)
+    {
+        // Validar que la consulta pertenezca a la mascota
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+        
+        $consulta->load(['veterinario.user']);
+        $mascota->load(['dueno']);
+
+        return view('modules.expedientes.diagnostico', compact('mascota', 'consulta'));
+    }
+
+    public function updateDiagnostico(Request $request, Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+
+        $request->validate([
+            'diagnostico' => 'required|string',
+        ]);
+
+        $esNuevo = empty($consulta->diagnostico);
+
+        $consulta->diagnostico = $request->input('diagnostico');
+        $consulta->save();
+
+        $mensaje = $esNuevo ? 'Se guardó la nueva información exitosamente.' : 'Se actualizó con éxito el diagnóstico.';
+
+        return redirect()->route('expedientes.consultas.diagnostico', [$mascota->id, $consulta->id])
+                         ->with('success', $mensaje);
+    }
 }

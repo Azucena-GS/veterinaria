@@ -12,13 +12,13 @@
     {{-- Divider --}}
     <hr class="sidebar-divider my-0">
 
-    @if(request()->routeIs('expedientes.consultas.show'))
+    @if(request()->routeIs('expedientes.consultas.*') && request()->route('consulta'))
         {{-- ================= MENU DE DETALLE DE CONSULTA ================= --}}
         
         <div class="sidebar-heading mt-3 text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">CONSULTA</div>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#diagnostico">
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.diagnostico') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.diagnostico', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
                 <i class="fas fa-fw fa-clipboard-list"></i>
                 <span>Diagnóstico</span>
             </a>
