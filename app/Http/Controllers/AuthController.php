@@ -42,6 +42,21 @@ class AuthController extends Controller
         if (Auth::user()->rol === 'administrador') {
             return to_route('admin.home');
         }
-        return view('modules/dashboard/home');
+
+        $config = \App\Models\ConfiguracionSistema::first();
+        
+        $stats = [
+            'pacientes' => \App\Models\Mascota::count(),
+            'consultas' => \App\Models\Consulta::count(),
+            'propietarios' => \App\Models\Dueno::count(),
+            'veterinarios' => \App\Models\User::where('rol', 'veterinario')->count()
+        ];
+
+        $recentConsultas = \App\Models\Consulta::with(['mascota', 'veterinario.user'])
+            ->latest('fecha_consulta')
+            ->take(5)
+            ->get();
+
+        return view('modules/dashboard/home', compact('config', 'stats', 'recentConsultas'));
     }
 }

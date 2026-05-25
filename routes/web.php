@@ -74,6 +74,10 @@ Route::middleware("auth")->group(function () {
         Route::put('/usuarios/{usuario}', [UserController::class, 'update'])->name('usuarios.update');
         Route::get('/usuarios/{usuario}', [UserController::class, 'show'])->name('usuarios.show');
         Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
+
+        // Configuración del Sistema
+        Route::get('/configuracion', [\App\Http\Controllers\ConfiguracionController::class, 'index'])->name('configuracion.index');
+        Route::post('/configuracion', [\App\Http\Controllers\ConfiguracionController::class, 'update'])->name('configuracion.update');
     });
 });
 

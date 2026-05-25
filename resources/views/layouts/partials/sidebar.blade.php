@@ -1,12 +1,16 @@
 {{-- ====================== SIDEBAR ====================== --}}
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+    @php
+        $config = \App\Models\ConfiguracionSistema::first();
+    @endphp
+
     {{-- Sidebar Brand --}}
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
         <div class="sidebar-brand-icon">
             <i class="fas fa-paw"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Veterinaria</div>
+        <div class="sidebar-brand-text mx-3">{{ $config->nombre_clinica ?? 'Veterinaria' }}</div>
     </a>
 
     {{-- Divider --}}
@@ -135,6 +139,14 @@
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Inventario</span>
+            </a>
+        </li>
+
+        {{-- Nav Item - Configuracion --}}
+        <li class="nav-item {{ request()->routeIs('admin.configuracion.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.configuracion.index') }}">
+                <i class="fas fa-fw fa-cogs"></i>
+                <span>Configuración</span>
             </a>
         </li>
     @endif
