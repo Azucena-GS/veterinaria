@@ -14,7 +14,7 @@
 
                         {{-- Panel izquierdo con logo --}}
                         <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center"
-                             style="background: linear-gradient(135deg, #f48fb1 0%, #ec407a 100%); min-height: 400px;">
+                             style="background: linear-gradient(135deg, #4e73df 0%, #224abe 100%); min-height: 400px;">
                             <img src="{{ asset('img/logo1.png') }}"
                                  alt="Logo Veterinaria"
                                  class="img-fluid"
