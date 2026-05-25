@@ -6,12 +6,14 @@
 @section('titulo_seccion', 'Consultas de ' . $mascota->nombre)
 
 @section('acciones_cabecera')
-    <a href="{{ route('expedientes') }}" class="btn btn-sm btn-secondary shadow-sm mr-2">
-        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Volver
-    </a>
-    <a href="#" class="btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-plus fa-sm text-white-50"></i> Nueva Consulta
-    </a>
+    <div>
+        <a href="{{ route('expedientes') }}" class="btn btn-sm btn-secondary shadow-sm mr-2">
+            <i class="fas fa-arrow-left fa-sm text-white-50"></i> Volver
+        </a>
+        <a href="{{ route('expedientes.consultas.crear', $mascota->id) }}" class="btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Nueva Consulta
+        </a>
+    </div>
 @endsection
 
 @section('contenido')

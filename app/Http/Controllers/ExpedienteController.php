@@ -35,6 +35,50 @@ class ExpedienteController extends Controller
         return view('modules.expedientes.consultas', compact('mascota'));
     }
 
+    public function createConsulta(Mascota $mascota)
+    {
+        $mascota->load('dueno');
+        $veterinarios = [];
+        
+        if (auth()->user()->rol === 'administrador') {
+            $veterinarios = \App\Models\Veterinario::with('user')->get();
+        }
+        
+        return view('modules.expedientes.crear_consulta', compact('mascota', 'veterinarios'));
+    }
+
+    public function storeConsulta(Request $request, Mascota $mascota)
+    {
+        $request->validate([
+            'peso' => 'required|numeric|min:0',
+            'talla' => 'required|numeric|min:0',
+        ]);
+
+        $veterinario_id = null;
+        if (auth()->user()->rol === 'administrador') {
+            $request->validate([
+                'veterinario_id' => 'required|exists:veterinarios,id',
+            ]);
+            $veterinario_id = $request->veterinario_id;
+        } else {
+            $veterinario = auth()->user()->veterinario;
+            if (!$veterinario) {
+                return back()->withInput()->withErrors(['veterinario_id' => 'Tu cuenta no tiene un perfil de veterinario asociado. Contacta al administrador para que complete tu registro.']);
+            }
+            $veterinario_id = $veterinario->id;
+        }
+
+        $mascota->consultas()->create([
+            'veterinario_id' => $veterinario_id,
+            'peso' => $request->peso,
+            'talla' => $request->talla,
+            'fecha_consulta' => now(),
+        ]);
+
+        return redirect()->route('expedientes.consultas', $mascota->id)
+                         ->with('success', 'Consulta registrada exitosamente.');
+    }
+
     public function showConsulta(Mascota $mascota, Consulta $consulta)
     {
         // Validar que la consulta pertenezca a la mascota

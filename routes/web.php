@@ -22,6 +22,8 @@ Route::middleware("auth")->group(function () {
     })->name('expedientes');
     Route::get('/expedientes/buscar', [ExpedienteController::class, 'buscar'])->name('expedientes.buscar');
     Route::get('/expedientes/{mascota}/consultas', [ExpedienteController::class, 'consultas'])->name('expedientes.consultas');
+    Route::get('/expedientes/{mascota}/consultas/crear', [ExpedienteController::class, 'createConsulta'])->name('expedientes.consultas.crear');
+    Route::post('/expedientes/{mascota}/consultas', [ExpedienteController::class, 'storeConsulta'])->name('expedientes.consultas.store');
     Route::get('/expedientes/{mascota}/consultas/{consulta}', [ExpedienteController::class, 'showConsulta'])->name('expedientes.consultas.show');
     Route::get('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [ExpedienteController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
     Route::put('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [ExpedienteController::class, 'updateDiagnostico'])->name('expedientes.consultas.diagnostico.update');
