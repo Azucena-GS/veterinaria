@@ -23,6 +23,18 @@ class AdminController extends Controller
     public function home()
     {
         $this->soloAdmin();
-        return view('modules.admin.dashboard.home');
+
+        $config = \App\Models\ConfiguracionSistema::first();
+        
+        $stats = [
+            'usuarios' => \App\Models\User::count(),
+            'veterinarios' => \App\Models\User::where('rol', 'veterinario')->count(),
+            'consultas' => \App\Models\Consulta::count(),
+            'pacientes' => \App\Models\Mascota::count(),
+        ];
+
+        $recentUsers = \App\Models\User::latest()->take(5)->get();
+
+        return view('modules.admin.dashboard.home', compact('config', 'stats', 'recentUsers'));
     }
 }

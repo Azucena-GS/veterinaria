@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('titulo_pagina', 'Configuración del Sistema')
 @section('titulo_seccion', 'Información de la Clínica')
@@ -91,17 +91,7 @@
                             @enderror
                         </div>
 
-                        <h5 class="font-weight-bold text-gray-800 mb-3 mt-5"><i class="fas fa-tags mr-2"></i>Catálogo de Servicios</h5>
-                        <hr>
-                        
-                        <div class="form-group mb-4">
-                            <label class="font-weight-bold" for="precios_servicios">Precios de Servicios (Formato JSON)</label>
-                            <textarea class="form-control text-monospace @error('precios_servicios') is-invalid @enderror" id="precios_servicios" name="precios_servicios" rows="6" placeholder='{"Consulta General": "500", "Vacuna": "350"}'>{{ old('precios_servicios', $config->precios_servicios ? json_encode($config->precios_servicios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '') }}</textarea>
-                            <small class="form-text text-muted">Asegúrate de usar formato JSON válido. Por ejemplo: <code>{"Servicio": "Precio"}</code></small>
-                            @error('precios_servicios')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+
 
                         <hr class="mt-5 mb-4">
                         

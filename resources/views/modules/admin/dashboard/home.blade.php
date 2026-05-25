@@ -11,6 +11,42 @@
 
 @section('contenido')
 
+    {{-- Banner de Bienvenida Administrador --}}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                <div class="card-body p-5 position-relative">
+                    {{-- Fondo decorativo --}}
+                    <i class="fas fa-shield-alt position-absolute text-white" style="font-size: 15rem; top: -2rem; right: -2rem; opacity: 0.05;"></i>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-md-9 text-white text-center text-md-left">
+                            <div class="mb-2">
+                                <span class="badge badge-light text-dark px-3 py-2 text-uppercase mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">Panel de Control Administrativo</span>
+                            </div>
+                            <h1 class="display-4 font-weight-bold mb-2" style="font-size: 2.2rem;">
+                                Bienvenido de nuevo, {{ Auth::user()->name }}
+                            </h1>
+                            <p class="lead mb-4 font-weight-light" style="opacity: 0.9; font-size: 1.1rem;">
+                                Tienes el control total sobre <strong>{{ $config->nombre_clinica ?? 'la Veterinaria' }}</strong>. 
+                                Desde aquí puedes supervisar usuarios, ingresos y la configuración general del sistema.
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-center d-none d-md-block">
+                            @if(isset($config) && $config->logo_path)
+                                <img src="{{ asset('uploads/config/' . $config->logo_path) }}" alt="Logo" class="img-fluid shadow" style="max-height: 140px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.2);">
+                            @else
+                                <div class="rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 140px; height: 140px; border: 4px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1);">
+                                    <i class="fas fa-user-shield fa-4x text-white"></i>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Tarjetas de resumen --}}
     <div class="row">
 
@@ -20,8 +56,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Usuarios</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Usuarios Totales</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['usuarios'] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -38,7 +74,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Veterinarios Activos</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['veterinarios'] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-md fa-2x text-gray-300"></i>
@@ -48,34 +84,34 @@
             </div>
         </div>
 
-        {{-- Ingresos del mes --}}
+        {{-- Pacientes --}}
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Ingresos del Mes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$0.00</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pacientes en Sistema</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['pacientes'] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-paw fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- Reportes pendientes --}}
+        {{-- Consultas --}}
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Reportes Pendientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Consultas Históricas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['consultas'] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            <i class="fas fa-file-medical-alt fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -84,64 +120,6 @@
 
     </div>
 
-    {{-- Bienvenida administrador --}}
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex align-items-center">
-                    <i class="fas fa-shield-alt mr-2 text-dark"></i>
-                    <h6 class="m-0 font-weight-bold text-dark">Bienvenido al Panel de Administración</h6>
-                </div>
-                <div class="card-body">
-                    <p class="mb-1">
-                        Bienvenido, <strong>{{ Auth::user()->name }}</strong>.
-                        Desde aquí puedes gestionar todos los aspectos del sistema veterinario.
-                    </p>
-                    <p class="mb-0 text-muted small">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        Usa el menú lateral para navegar entre las secciones de administración.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Tabla de usuarios del sistema --}}
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-dark">
-                        <i class="fas fa-users-cog mr-2"></i>Usuarios del Sistema
-                    </h6>
-                    <a href="#" class="btn btn-sm btn-dark">
-                        <i class="fas fa-plus fa-sm mr-1"></i> Nuevo Usuario
-                    </a>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="dataTableUsuarios" width="100%" cellspacing="0">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="5" class="text-center text-muted">
-                                        <i class="fas fa-info-circle mr-1"></i> Sin usuarios registrados aún.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- Tabla de usuarios removida por petición del usuario --}}
 
 @endsection
