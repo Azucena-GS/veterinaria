@@ -59,4 +59,9 @@ class Mascota extends Model
     {
         return $this->hasMany(AntecedentePatologico::class);
     }
+
+    public function historial_alimentacion()
+    {
+        return $this->hasMany(HistorialAlimentacion::class);
+    }
 }

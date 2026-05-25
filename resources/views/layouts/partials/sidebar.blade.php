@@ -60,8 +60,8 @@
 
         <div class="sidebar-heading text-uppercase" style="font-size: 0.7rem; opacity: 0.8;">HISTORIAL</div>
 
-        <li class="nav-item">
-            <a class="nav-link py-2" href="#alimentacion">
+        <li class="nav-item {{ request()->routeIs('expedientes.consultas.alimentacion') ? 'active' : '' }}">
+            <a class="nav-link py-2" href="{{ route('expedientes.consultas.alimentacion', ['mascota' => request()->route('mascota'), 'consulta' => request()->route('consulta')]) }}">
                 <i class="fas fa-fw fa-utensils"></i>
                 <span>Alimentación</span>
             </a>

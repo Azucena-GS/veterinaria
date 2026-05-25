@@ -8,6 +8,7 @@ use App\Models\Consulta;
 use App\Models\AntecedenteAlergia;
 use App\Models\AntecedenteLesion;
 use App\Models\AntecedentePatologico;
+use App\Models\HistorialAlimentacion;
 
 class AntecedenteController extends Controller
 {
@@ -152,5 +153,52 @@ class AntecedenteController extends Controller
         $patologico->delete();
         return redirect()->route('expedientes.consultas.patologicos', [$mascota->id, $consulta->id])
                          ->with('success', 'Antecedente patológico eliminado exitosamente.');
+    }
+
+    // ==========================================
+    // ALIMENTACIÓN
+    // ==========================================
+    public function historialAlimentacion(Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) abort(404);
+        
+        $mascota->load('historial_alimentacion');
+        return view('modules.expedientes.historial_alimentacion', compact('mascota', 'consulta'));
+    }
+
+    public function crearAlimentacion(Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) abort(404);
+        
+        return view('modules.expedientes.alimentacion', compact('mascota', 'consulta'));
+    }
+
+    public function storeAlimentacion(Request $request, Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) abort(404);
+
+        $request->validate([
+            'descripcion_dieta' => 'required|string',
+            'frecuencia_diaria' => 'required|integer|min:1',
+        ]);
+
+        $mascota->historial_alimentacion()->create($request->all());
+
+        return redirect()->route('expedientes.consultas.alimentacion', [$mascota->id, $consulta->id])
+                         ->with('success', 'Dieta registrada exitosamente.');
+    }
+
+    public function deleteAlimentacion(Mascota $mascota, Consulta $consulta, HistorialAlimentacion $alimentacion)
+    {
+        if ($alimentacion->mascota_id !== $mascota->id) abort(404);
+        return view('modules.expedientes.delete_alimentacion', compact('mascota', 'consulta', 'alimentacion'));
+    }
+
+    public function destroyAlimentacion(Mascota $mascota, Consulta $consulta, HistorialAlimentacion $alimentacion)
+    {
+        if ($alimentacion->mascota_id !== $mascota->id) abort(404);
+        $alimentacion->delete();
+        return redirect()->route('expedientes.consultas.alimentacion', [$mascota->id, $consulta->id])
+                         ->with('success', 'Dieta eliminada exitosamente.');
     }
 }

@@ -51,6 +51,13 @@ Route::middleware("auth")->group(function () {
     Route::post('/expedientes/{mascota}/consultas/{consulta}/patologicos', [AntecedenteController::class, 'storePatologico'])->name('expedientes.consultas.patologicos.store');
     Route::delete('/expedientes/{mascota}/consultas/{consulta}/patologicos/{patologico}', [AntecedenteController::class, 'destroyPatologico'])->name('expedientes.consultas.patologicos.destroy');
 
+    // Rutas de Antecedentes (Alimentación)
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alimentacion', [AntecedenteController::class, 'historialAlimentacion'])->name('expedientes.consultas.alimentacion');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alimentacion/crear', [AntecedenteController::class, 'crearAlimentacion'])->name('expedientes.consultas.alimentacion.crear');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/alimentacion/{alimentacion}/eliminar', [AntecedenteController::class, 'deleteAlimentacion'])->name('expedientes.consultas.alimentacion.delete');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/alimentacion', [AntecedenteController::class, 'storeAlimentacion'])->name('expedientes.consultas.alimentacion.store');
+    Route::delete('/expedientes/{mascota}/consultas/{consulta}/alimentacion/{alimentacion}', [AntecedenteController::class, 'destroyAlimentacion'])->name('expedientes.consultas.alimentacion.destroy');
+
     // Rutas exclusivas del administrador
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
