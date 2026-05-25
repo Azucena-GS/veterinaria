@@ -25,9 +25,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">Información del Paciente</h6>
                 </div>
                 <div class="card-body">
-                    <div class="text-center mb-4">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4 rounded-circle" style="width: 15rem;"
-                            src="{{ asset('startbootstrap/img/undraw_posting_photo.svg') }}" alt="Foto Mascota">
+                    <div class="text-center mb-4 mt-3">
+                        <i class="fas fa-paw text-primary" style="font-size: 8rem; opacity: 0.8;"></i>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">

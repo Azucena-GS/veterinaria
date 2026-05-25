@@ -20,6 +20,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes', function () {
         return view('modules.expedientes.index');
     })->name('expedientes');
+    Route::get('/expedientes/crear', [ExpedienteController::class, 'create'])->name('expedientes.crear');
+    Route::post('/expedientes', [ExpedienteController::class, 'store'])->name('expedientes.store');
     Route::get('/expedientes/buscar', [ExpedienteController::class, 'buscar'])->name('expedientes.buscar');
     Route::get('/expedientes/{mascota}/consultas', [ExpedienteController::class, 'consultas'])->name('expedientes.consultas');
     Route::get('/expedientes/{mascota}/consultas/crear', [ExpedienteController::class, 'createConsulta'])->name('expedientes.consultas.crear');

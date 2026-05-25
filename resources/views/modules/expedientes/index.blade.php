@@ -19,9 +19,6 @@
                     <h6 class="m-0 font-weight-bold text-primary">
                         <i class="fas fa-folder-open mr-2"></i>Expedientes Médicos
                     </h6>
-                    <a href="#" class="btn btn-sm btn-primary">
-                        <i class="fas fa-plus fa-sm mr-1"></i> Nuevo Expediente
-                    </a>
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center py-5">
@@ -36,7 +33,7 @@
                                     <input type="hidden" id="mascotaSeleccionadaId" value="">                                </div>
                                 
                                 {{-- Contenedor de Resultados Flotante --}}
-                                <div id="resultadosBusqueda" class="dropdown-menu w-100 shadow position-absolute" style="top: 100%; left: 0; display: none; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: -1.5rem;">
+                                <div id="resultadosBusqueda" class="dropdown-menu w-100 shadow position-absolute" style="top: 100%; left: 0; display: none; max-height: 300px; overflow-y: auto; z-index: 1000; margin-top: 0.1rem;">
                                     <!-- Los resultados se inyectarán aquí con JS -->
                                 </div>
                             </div>
@@ -46,9 +43,9 @@
                                 <button type="button" id="btnVerConsultas" class="btn btn-lg btn-outline-primary mx-2 shadow-sm">
                                     <i class="fas fa-file-medical-alt mr-2"></i>Ver Consultas
                                 </button>
-                                <button type="button" class="btn btn-lg btn-success mx-2 shadow-sm">
+                                <a href="{{ route('expedientes.crear') }}" class="btn btn-lg btn-success mx-2 shadow-sm">
                                     <i class="fas fa-plus-circle mr-2"></i>Nuevo Paciente/Mascota
-                                </button>
+                                </a>
                             </div>
 
                         </div>

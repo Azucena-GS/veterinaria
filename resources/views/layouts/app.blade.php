@@ -19,8 +19,7 @@
     {{-- SB Admin 2 CSS --}}
     <link href="{{ asset('startbootstrap/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    {{-- Tema personalizado rosa --}}
-    <link href="{{ asset('css/veterinaria.css') }}" rel="stylesheet">
+
 
     @stack('styles')
 </head>

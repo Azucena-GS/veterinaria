@@ -5,9 +5,60 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\Consulta;
+use App\Models\Dueno;
 
 class ExpedienteController extends Controller
 {
+    public function create()
+    {
+        return view('modules.expedientes.crear');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            // Validaciones Dueño
+            'nombre_dueno' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:20',
+            'direccion' => 'nullable|string|max:500',
+            // Validaciones Mascota
+            'nombre_mascota' => 'required|string|max:255',
+            'especie' => 'required|string|max:100',
+            'otra_especie' => 'required_if:especie,Otro|nullable|string|max:100',
+            'raza' => 'nullable|string|max:100',
+            'fecha_nacimiento' => 'nullable|date',
+            'tipo_sangre' => 'nullable|string|max:20',
+            'comportamiento' => 'nullable|string|max:100',
+            'es_adoptado' => 'boolean',
+        ]);
+
+        // 1. Buscar o Crear el Dueño por nombre (y actualizamos sus datos si se mandaron)
+        $dueno = Dueno::firstOrCreate(
+            ['nombre_completo' => trim($request->input('nombre_dueno'))],
+            [
+                'telefono' => $request->input('telefono'),
+                'direccion' => $request->input('direccion'),
+            ]
+        );
+
+        // Si ya existía, pero se enviaron nuevos datos (opcional: actualizar sus datos aquí si se desea)
+
+        // 2. Crear la Mascota
+        $mascota = new Mascota();
+        $mascota->dueno_id = $dueno->id;
+        $mascota->nombre = $request->input('nombre_mascota');
+        $mascota->especie = $request->input('especie') === 'Otro' ? $request->input('otra_especie') : $request->input('especie');
+        $mascota->raza = $request->input('raza');
+        $mascota->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $mascota->tipo_sangre = $request->input('tipo_sangre');
+        $mascota->comportamiento = $request->input('comportamiento');
+        $mascota->es_adoptado = $request->has('es_adoptado') ? true : false;
+        $mascota->save();
+
+        return redirect()->route('expedientes.consultas', $mascota->id)
+                         ->with('success', '¡Paciente y Dueño registrados exitosamente!');
+    }
+
     public function buscar(Request $request)
     {
         $query = $request->input('q');
@@ -19,10 +70,10 @@ class ExpedienteController extends Controller
         // Usamos Eloquent en lugar del driver 'database' de Scout para poder
         // buscar dentro de las relaciones (nombre_completo del dueño) sin errores SQL.
         $resultados = Mascota::with('dueno')
-            ->where('id', 'like', "%{$query}%")
-            ->orWhere('nombre', 'like', "%{$query}%")
+            ->where('id', 'like', "{$query}%")
+            ->orWhere('nombre', 'like', "{$query}%")
             ->orWhereHas('dueno', function ($q) use ($query) {
-                $q->where('nombre_completo', 'like', "%{$query}%");
+                $q->where('nombre_completo', 'like', "{$query}%");
             })
             ->take(5)
             ->get();
